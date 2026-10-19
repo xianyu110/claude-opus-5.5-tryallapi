@@ -36,7 +36,11 @@
 
 ## 二、在价格页 / 模型广场找到 Claude Opus 5.5
 
-打开 [价格页](https://tryallapi.com/pricing) 或模型广场，按供应商 **Anthropic**、类型 **对话**、关键词 `opus` / `claude-opus-5-5` 筛选。详情卡要点（与公开定价接口 / 文档站一致，**截图待补**）：
+打开 [价格页](https://tryallapi.com/pricing) 或模型广场，按供应商 **Anthropic**、类型 **对话**、关键词 `opus` / `claude-opus-5-5` 筛选。详情卡截图如下：
+
+![Claude Opus 5.5 模型广场详情卡：模型 ID、双协议 API 与分组价格](docs/model-square.png)
+
+截图里详情卡要点（与广场文案一致）：
 
 | 字段 | 内容 |
 | --- | --- |
@@ -44,7 +48,7 @@
 | **供应商** | Anthropic |
 | **描述 gist** | 百万级上下文；自适应思考不可关闭；Agent / 代码能力突出 |
 | **标签** | 对话、工具、识图 |
-| **端点类型** | `openai` + `anthropic` |
+| **API** | Anthropic：`POST /v1/messages`；OpenAI：`POST /v1/chat/completions` |
 | **计费** | 按量（token）；分组见下节 |
 
 同屏常见相邻卡：`claude-sonnet-5-5`、`claude-fable-5-1`、`claude-opus-5` 等。文中 UI 品牌可能为 momoAPIPro / 模型广场，实际对接产品以 [TryAllAPI](https://tryallapi.com/) 控制台与文档为准。
@@ -83,20 +87,25 @@
 
 来源：[docs.tryallapi.com/claude-opus-5-5-api](https://docs.tryallapi.com/claude-opus-5-5-api/)（取数快照）；**以 Anthropic / 控制台实时为准**。
 
-### 广场可见分组倍率（公开定价接口快照）
+### 分组价格（复现截图表格，$/1M tokens，按量）
 
-`claude-opus-5-5` 可见分组示例：
+截图「分组价格」表复现如下（**以页面实时为准**）：
 
-| 分组 | 倍率（快照） |
-| --- | --- |
-| Kiro-Claude-1 | 0.17648 |
-| Claude-Code-1 | 0.35294 |
-| Claude-Code-2 | 0.58824 |
-| AWS-Bedrock-2 | 1.17648 |
-| AWS-Claude-2 | 1.76472 |
-| AWS-Claude-3 | 2.2 |
+| 分组 | 输入 | 输出 | 5m 缓存创建 | 1h 缓存创建 | 缓存命中 |
+| --- | --- | --- | --- | --- | --- |
+| **AWS-Bedrock-2** | $4.7060 | $23.5300 | $5.8820 | $9.4120 | $0.2353 |
+| **AWS-Claude-2** | $7.0590 | $35.2940 | $8.8240 | $14.1180 | $0.3529 |
+| **AWS-Claude-3** | $8.8000 | $44.0000 | $11.0000 | $17.6000 | $0.4400 |
+| **Claude-Code-1**（截图标 Save 64%） | $1.4120 | $7.0590 | $1.7650 | $2.8240 | $0.0706 |
+| **Claude-Code-2**（截图标 Save 41%） | $2.3530 | $11.7650 | $2.9410 | $4.7060 | $0.1176 |
+| **Kiro-Claude-1**（截图标 Save 82%） | $0.7059 | $3.5300 | $0.8824 | $1.4120 | $0.0353 |
 
-接口字段另见 `model_ratio=2`、`completion_ratio=5`、`cache_ratio=0.05`。**最终扣费以控制台流水为准**，上表仅帮助读懂「官方价 × 倍率」结构。
+截图 API 端点同时列出：
+
+- Anthropic 协议：`POST /v1/messages`
+- OpenAI 协议：`POST /v1/chat/completions`
+
+公式直觉仍是「官方价 × 分组倍率」；上表数字直接来自详情卡，**最终扣费以控制台流水为准**。
 
 ---
 
@@ -216,7 +225,7 @@ Anthropic Messages / Claude Code：Base URL `https://tryallapi.com`（以控制�
 | 文档站专页 | [claude-opus-5-5-api](https://docs.tryallapi.com/claude-opus-5-5-api/) |
 | 相关仓库 | [awesome-claude-opus-5.5](https://github.com/xianyu110/awesome-claude-opus-5.5) |
 
-控制台 Token、定价与文档更新后，以线上为准。截图待补：待 `/workspace/articles/model-seo-20261019/opus55.png` 就绪后可放入 `docs/` 相对引用。
+控制台 Token、定价与文档更新后，以线上为准。详情卡截图见 `docs/model-square.png`（相对引用，Pages 可直接展示）。
 
 ---
 
