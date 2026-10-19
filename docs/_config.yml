@@ -1,0 +1,5 @@
+title: "Claude Opus 5.5 API 调用教程（TryAllAPI）"
+description: "How to call Claude Opus 5.5 via TryAllAPI — OpenAI-compatible chat API tutorial. 模型广场选型、价格表、chat/completions 接入。"
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-seo-tag
